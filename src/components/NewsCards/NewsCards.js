@@ -10,19 +10,21 @@ const infoCards = [
     color: "#1565c0",
     title: "News by Categories",
     info: "Business, Entertainment, General, Health, Science, Sports, Technology",
-    text: "Give me the latest Technology news",
+    text: "Show me, the Technology news",
   },
   {
     color: "#4527a0",
     title: "News by Terms",
     info: "Bitcoin, PlayStation 5, Smartphones, Donald Trump...",
     text: "What's up with PlayStation 5",
+    coming: "Coming Soon!",
   },
   {
     color: "#283593",
     title: "News by Sources",
     info: "CNN, Wired, BBC News, Time, IGN, Buzzfeed, ABC News...",
     text: "Give me the news from CNN",
+    coming: "Coming Soon!",
   },
 ];
 
@@ -38,8 +40,9 @@ const NewsCards = ({ articles, activeArticle }) => {
           alignItems="stretch"
           spacing={3}
         >
-          {infoCards.map((infoCard) => (
+          {infoCards.map((infoCard, index) => (
             <Grid
+              key={index}
               item
               xs={12}
               sm={6}
@@ -54,6 +57,7 @@ const NewsCards = ({ articles, activeArticle }) => {
                 <Typography variant="h5" component="h5">
                   {infoCard.title}
                 </Typography>
+
                 {infoCard.info ? (
                   <Typography variant="h6" component="h6">
                     <strong>{infoCard.title.split(" ")[2]}</strong>: <br />
@@ -62,6 +66,9 @@ const NewsCards = ({ articles, activeArticle }) => {
                 ) : null}
                 <Typography variant="h6" component="h6">
                   Try saying: <br /> <i>{infoCard.text}</i>
+                </Typography>
+                <Typography variant="h5" component="h5" color="secondary">
+                  {infoCard.coming}
                 </Typography>
               </div>
             </Grid>
@@ -79,7 +86,7 @@ const NewsCards = ({ articles, activeArticle }) => {
         alignItems="stretch"
         spacing={3}
       >
-        {articles.map((article, i) => (
+        {articles.map((article, i, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} style={{ display: "flex" }}>
             <NewsCard activeArticle={activeArticle} i={i} article={article} />
           </Grid>
